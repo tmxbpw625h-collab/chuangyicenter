@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创益中心 - 童话公益之旅</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 使用宋体作为主要字体 */
+        body {
+            font-family: "SimSun", "宋体", serif;
+            color: #333;
+            line-height: 1.6;
+            /* 童话风格的蓝天白云背景 */
+            background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+        
+        /* 添加半透明遮罩层，提高文字可读性 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+        
+        /* 顶部导航栏 */
+        .navbar {
+            background-color: rgba(64, 156, 255, 0.9);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin: 0 18px;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* 主要内容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        /* 标题区域 - 靠左对齐 */
+        .header-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 40px;
+            text-align: left;
+            padding-left: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-right: 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 4px solid #409cff;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .title-container h1 {
+            font-family: "SimSun", "宋体", serif;
+            font-size: 3.5rem;
+            color: #0066cc;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        
+        .title-container .subtitle {
+            font-size: 1.1rem;
+            color: #409cff;
+            font-weight: 500;
+        }
+        
+        /* 欢迎区域 */
+        .welcome-section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .welcome-text {
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            color: #0066cc;
+            font-weight: 600;
+        }
+        
+        /* 产品区域 */
+        .products-section {
+            margin-top: 30px;
+        }
+        
+        .section-title {
+            font-family: "SimSun", "宋体", serif;
+            font-size: 2.2rem;
+            color: #0066cc;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #409cff;
+        }
+        
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        
+        .product-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            padding-bottom: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #cce5ff;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 102, 204, 0.2);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid #409cff;
+        }
+        
+        .product-name {
+            font-family: "SimSun", "宋体", serif;
+            font-size: 1.6rem;
+            color: #0066cc;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+        
+        .product-description {
+            padding: 0 20px;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* 云朵装饰 */
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            z-index: -1;
+        }
+        
+        .cloud-1 {
+            width: 120px;
+            height: 40px;
+            top: 15%;
+            left: 10%;
+            border-radius: 60px;
+        }
+        
+        .cloud-2 {
+            width: 100px;
+            height: 35px;
+            top: 25%;
+            right: 15%;
+            border-radius: 50px;
+        }
+        
+        .cloud-3 {
+            width: 80px;
+            height: 30px;
+            bottom: 20%;
+            left: 20%;
+            border-radius: 40px;
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            margin-top: 60px;
+            padding: 25px 0;
+            border-top: 1px solid #cce5ff;
+            color: #0066cc;
+            font-size: 0.9rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+        }
+        
+        .footer-icons {
+            margin-top: 15px;
+        }
+        
+        .footer-icons a {
+            color: #0066cc;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+        
+        .footer-icons a:hover {
+            color: #409cff;
+            transform: translateY(-3px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1100px) {
+            .products-container {
+                gap: 30px;
+            }
+            
+            .product-card {
+                width: 300px;
+            }
+            
+            .nav-links li {
+                margin: 0 15px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .header-section {
+                flex-direction: column;
+                text-align: center;
+                padding-left: 0;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .title-container h1 {
+                font-size: 3rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-links li {
+                margin: 5px 12px;
+            }
+            
+            .products-container {
+                gap: 20px;
+            }
+            
+            .product-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .cloud {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .title-container h1 {
+                font-size: 2.5rem;
+            }
+            
+            .welcome-text {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .product-name {
+                font-size: 1.4rem;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+                padding: 6px 8px;
+            }
+            
+            .nav-links li {
+                margin: 5px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 云朵装饰 -->
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#stories">了解创益故事</a></li>
+                <li><a href="#shop">文创商城</a></li>
+                <li><a href="#map">伙伴地图</a></li>
+                <li><a href="#transparency">公益透明窗</a></li>
+                <li><a href="#contact">联系我们与加盟合作</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主要内容区域 -->
+    <div class="container">
+        <!-- 标题区域 - 靠左对齐 -->
+        <section class="header-section">
+            <div class="logo">
+                <!-- 使用您提供的logo图片URL -->
+                <img src="https://tc.bowu.chat/uploads/images/6H5EHKFw.jpeg" alt="创益共生Logo">
+            </div>
+            <div class="title-container">
+                <h1>创益中心</h1>
+                <p class="subtitle">童话般的公益旅程，让爱与创意飞翔</p>
+            </div>
+        </section>
+        
+        <!-- 欢迎区域 -->
+        <section class="welcome-section">
+            <p class="welcome-text">
+                欢迎来到创益中心！
+            </p>
+            <p class="welcome-text">
+                和我们一起开启公益之旅！在这里，你可以看到孩子们的画作，一起参与公益文创设计，了解他们的故事。
+            </p>
+        </section>
+        
+        <!-- 产品区域 -->
+        <section class="products-section" id="shop">
+            <h2 class="section-title">公益文创产品</h2>
+            <div class="products-container">
+                <!-- 明信片产品 -->
+                <div class="product-card">
+                    <img src="https://tc.bowu.chat/uploads/images/Lf9EwKYt.jpeg" 
+                         alt="公益明信片" class="product-image">
+                    <h3 class="product-name">明信片</h3>
+                    <p class="product-description">
+                        这套明信片收录了孩子们创作的12幅画作，每一张都展现了他们眼中的美好世界。购买明信片所得将用于公益捐款。
+                    </p>
+                </div>
+                
+                <!-- 台历产品 -->
+                <div class="product-card">
+                    <img src="https://tc.bowu.chat/uploads/images/OAmhODZ5.jpeg" 
+                         alt="公益台历" class="product-image">
+                    <h3 class="product-name">台历</h3>
+                    <p class="product-description">
+                        2026公益台历，每月一幅儿童画作，配有孩子们的故事和创作灵感。让这些充满童真的艺术作品陪伴您的每一天，同时支持公益事业。
+                    </p>
+                </div>
+                
+                <!-- 帆布袋产品 - 已更新URL -->
+                <div class="product-card">
+                    <img src="https://tc.bowu.chat/uploads/images/bX810Z8r.jpeg" 
+                         alt="公益帆布袋" class="product-image">
+                    <h3 class="product-name">帆布袋</h3>
+                    <p class="product-description">
+                        环保帆布袋印有孩子们设计的图案，采用环保材料制作，结实耐用。每个帆布袋的销售将所盈利捐给福利院。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>创益中心 &copy; <span id="currentYear"></span> - 用创意点亮公益，用行动传递温暖</p>
+            <p>联系我们: contact@chuangyi.org | 电话: 400-123-4567 | 加盟合作: partnership@chuangyi.org</p>
+            <div class="footer-icons">
+                <a href="#"><i class="fab fa-weixin"></i></a>
+                <a href="#"><i class="fab fa-weibo"></i></a>
+                <a href="#"><i class="fab fa-qq"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+                <a href="#"><i class="fas fa-cloud"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 更新年份
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // 为产品卡片添加点击效果
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // 导航栏点击平滑滚动
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // 获取目标部分ID
+                    const targetId = this.getAttribute('href');
+                    
+                    // 如果是锚点链接
+                    if (targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        
+                        if (targetElement) {
+                            e.preventDefault();
+                            
+                            // 平滑滚动到目标位置
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                            
+                            // 更新活动链接状态
+                            navLinks.forEach(l => l.classList.remove('active'));
+                            this.classList.add('active');
+                        }
+                    }
+                });
+            });
+            
+            // 欢迎消息动画
+            const welcomeTexts = document.querySelectorAll('.welcome-text');
+            welcomeTexts.forEach((text, index) => {
+                text.style.opacity = '0';
+                text.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    text.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    text.style.opacity = '1';
+                    text.style.transform = 'translateY(0)';
+                }, 300 + index * 300);
+            });
+            
+            // 产品卡片动画
+            const productCardsAll = document.querySelectorAll('.product-card');
+            productCardsAll.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 500 + index * 200);
+            });
+            
+            // 云朵动画
+            const clouds = document.querySelectorAll('.cloud');
+            clouds.forEach((cloud, index) => {
+                let direction = index % 2 === 0 ? 1 : -1;
+                let distance = 20;
+                
+                function animateCloud() {
+                    let currentLeft = parseFloat(getComputedStyle(cloud).left);
+                    let newLeft = currentLeft + (direction * 0.5);
+                    
+                    if (newLeft > parseFloat(getComputedStyle(cloud.parentElement).width) - parseFloat(getComputedStyle(cloud).width) || newLeft < 0) {
+                        direction *= -1;
+                    }
+                    
+                    cloud.style.left = newLeft + 'px';
+                    
+                    requestAnimationFrame(animateCloud);
+                }
+                
+                // 只在非移动设备上运行动画
+                if (window.innerWidth > 900) {
+                    animateCloud();
+                }
+            });
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(64, 156, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(5px)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(64, 156, 255, 0.9)';
+                navbar.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
